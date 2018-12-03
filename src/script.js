@@ -35,7 +35,7 @@ const update = function() {
       if (input == undefined || input == "") {
             input = dir;
       }
-      input = input.split("\n");
+      input = input.split("\n").filter(Boolean);
 
       for (var i = 0; i < input.length; i++) {
             var split = input[i].split("\\");
