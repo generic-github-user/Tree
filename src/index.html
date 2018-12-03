@@ -1,5 +1,6 @@
+<!-- Based on example code at http://visjs.org/examples/network/nodeStyles/shadows.html -->
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Tree</title>
@@ -15,7 +16,7 @@
             background-color: #ffffff;
         }
 
-        #mynetwork {
+        #network {
             width: 100%;
             height: 100vh;
 			margin: 0;
@@ -31,7 +32,7 @@
 
 <body>
 
-<div id="mynetwork"></div>
+<div id="network"></div>
 <script type="text/javascript">
     var len = undefined;
 
@@ -97,8 +98,7 @@
         {from: 28, to: 0}
     ]
 
-    // create a network
-    var container = document.getElementById('mynetwork');
+    var container = document.getElementById("network");
     var data = {
         nodes: nodes,
         edges: edges
