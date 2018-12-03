@@ -9,21 +9,32 @@ var data = {
 };
 
 const directory = function(input) {
-      var dir = "";
+      var output = "";
       input = input.split("\\");
       for (var i = 0; i < input.length - 1; i++) {
-            dir += input[i];
+            output += input[i];
             if (i < input.length - 2) {
-                  dir += "\\";
+                  output += "\\";
             }
       }
-      return dir;
+      return output;
 }
+
+$.ajaxSetup({
+      async: false
+});
+var dir = $.ajax({
+      url: "./dir.txt",
+      async: false
+}).responseText;
 
 var id = 0;
 var group = 1;
 const update = function() {
       var input = document.querySelector("#input").value;
+      if (input == undefined || input == "") {
+            input = dir;
+      }
       input = input.split("\n");
 
       for (var i = 0; i < input.length; i++) {
@@ -59,6 +70,8 @@ const update = function() {
             }
       }
 }
+
+update();
 
 var container = document.getElementById("network");
 
