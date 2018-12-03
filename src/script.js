@@ -21,6 +21,7 @@ const directory = function(input) {
 }
 
 var id = 0;
+var group = 1;
 const update = function () {
 	var input = document.querySelector("#input").value;
 	input = input.split("\n");
@@ -28,10 +29,16 @@ const update = function () {
 	for (var i = 0; i < input.length; i++) {
 		var split = input[i].split("\\");
 		var name = split[split.length - 1];
+		if (name.includes(".")) {
+			group = 1;
+		}
+		else {
+			group = 2;
+		}
 		nodes.add({
 			id: id,
 			label: name,
-			group: 1,
+			group: group,
 			path: input[i]
 		});
 		
@@ -41,9 +48,14 @@ const update = function () {
 		for (var j = 0; j < Object.keys(data.nodes._data).length; j ++) {
 			if (directory(input[i]) == data.nodes._data[j].path) {
 				edges.add({
-					from: i,
-					to: j
+					from: j,
+					to: i
 				});
+				//nodes.update({
+					//id: i,
+					//group: group
+				//});
+				//group++;
 			}
 		}
 	}
@@ -56,7 +68,7 @@ var options = {
 		shape: 'dot',
 		size: 30,
 		font: {
-			size: 32
+			size: 16
 		},
 		borderWidth: 2,
 		shadow:true
