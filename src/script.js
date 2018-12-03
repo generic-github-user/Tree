@@ -31,7 +31,7 @@ var dir = $.ajax({
 var id = 0;
 var group = 1;
 const update = function() {
-      var input = document.querySelector("#input").value;
+      var input = $("#input")[0].value;
       if (input == undefined || input == "") {
             input = dir;
       }
@@ -73,7 +73,7 @@ const update = function() {
 
 update();
 
-var container = document.getElementById("network");
+var container = $("#network")[0];
 
 var options = {
       nodes: {
