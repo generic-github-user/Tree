@@ -43,29 +43,53 @@ var id = 0;
 var group = 1;
 var min_subfolders;
 const update = function() {
+      // Get input text from textarea
       var input = $("#input")[0].value;
+      // If no input is provided, use default
       if (input == undefined || input == "") {
             input = dir;
       }
-      input = input.split("\n").filter(Boolean);
+      // Split input string into array of lines
+      input = input.split("\n");
+      // Remove empty lines from input
+      input = input.filter(Boolean);
+
+      // Find shortest file path
+      // Start with first file path
       min_subfolders = input[0];
+      // Loop through all file paths
       for (var i = 0; i < input.length; i++) {
+            // Compare current shortest directory to current file path
+            // If file path has fewer subfolders than min_subfolders, update min_subfolders
             if (subfolders(input[i]) < subfolders(min_subfolders)) {
                   min_subfolders = input[i];
             }
       }
+      // Add root directory to list of file paths
       input.push(directory(min_subfolders));
 
+      // Add nodes to represent files and folders
+      // Loop through all file paths
       for (var i = 0; i < input.length; i++) {
+            // Split file path into individual folders and files
             var split = input[i].split("\\");
+            // Get filename from file path
             var name = split[split.length - 1];
+
+            // Root node should be one color . . .
             if (i == input.length - 1) {
                   group = 3;
-            } else if (name.includes(".")) {
+            }
+            // Directories (folders) should be another . . .
+            else if (name.includes(".")) {
                   group = 1;
-            } else {
+            }
+            // And files should be another
+            else {
                   group = 2;
             }
+
+            // Add node to network
             nodes.add({
                   id: id,
                   label: name,
@@ -75,13 +99,19 @@ const update = function() {
 
             id++;
       }
+
+      // Add connections/edges to network
       for (var i = 0; i < input.length; i++) {
+            // Loop through all existing nodes
             for (var j = 0; j < Object.keys(data.nodes._data).length; j++) {
+                  // Check if directory of current node matches the full path of any other nodes
                   if (directory(input[i]) == data.nodes._data[j].path) {
+                        // If the node belongs to the current directory, add a connection between the two nodes
                         edges.add({
                               from: j,
                               to: i
                         });
+
                         //nodes.update({
                         //id: i,
                         //group: group
