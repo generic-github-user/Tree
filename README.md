@@ -1,5 +1,9 @@
 # Tree
 
+A simple visualizer for file directory tree structures, especially in Windows. Files and folders are visualized as a network, with files and the directories they belong to connected. This can be useful for quickly seeing the structure of all a project's files or just creating a visualization for fun.
+
+![Example file visualization](./3.PNG)
+*Visualization of the [`samples`](https://github.com/chartjs/Chart.js/tree/master/samples) directory of the [Chart.js](https://www.chartjs.org/) library*
 # Tools
 
 ## vis.js
