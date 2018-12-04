@@ -1,5 +1,3 @@
-var len = undefined;
-
 // Create datasets for nodes and edges
 var nodes = new vis.DataSet();
 var edges = new vis.DataSet();
@@ -34,10 +32,6 @@ const subfolders = function(input) {
       return input.split("\\").length;
 }
 
-// Set up AJAX with jQuery
-$.ajaxSetup({
-      async: false
-});
 // Get default file paths from dir.txt
 var dir = $.ajax({
       url: "./dir.txt",
@@ -47,7 +41,7 @@ var dir = $.ajax({
 // ID of current node
 var id = 0;
 // Node group (color)
-var group = 1;
+var group;
 // Minimum number of nested directories in all file paths
 var min_subfolders;
 // Generate network visualization based on input data
