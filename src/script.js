@@ -1,8 +1,10 @@
 var len = undefined;
 
+// Create datasets for nodes and edges
 var nodes = new vis.DataSet();
 var edges = new vis.DataSet();
 
+// Store node and edges in one object
 var data = {
       nodes: nodes,
       edges: edges
@@ -27,21 +29,28 @@ const directory = function(input) {
       return output;
 }
 
+// Get number of sub-directories within file path
 const subfolders = function(input) {
       return input.split("\\").length;
 }
 
+// Set up AJAX with jQuery
 $.ajaxSetup({
       async: false
 });
+// Get default file paths from dir.txt
 var dir = $.ajax({
       url: "./dir.txt",
       async: false
 }).responseText;
 
+// ID of current node
 var id = 0;
+// Node group (color)
 var group = 1;
+// Minimum number of nested directories in all file paths
 var min_subfolders;
+// Generate network visualization based on input data
 const update = function() {
       // Get input text from textarea
       var input = $("#input")[0].value;
@@ -122,10 +131,13 @@ const update = function() {
       }
 }
 
+// Update network when program is started
 update();
 
+// Get div where network will be displayed
 var container = $("#network")[0];
 
+// Define options for network visualization
 var options = {
       nodes: {
             shape: 'dot',
@@ -141,4 +153,6 @@ var options = {
             shadow: true
       }
 };
+
+// Display network
 network = new vis.Network(container, data, options);
