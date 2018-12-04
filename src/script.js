@@ -20,6 +20,10 @@ const directory = function(input) {
       return output;
 }
 
+const subfolders = function(input) {
+      return input.split("\\").length;
+}
+
 $.ajaxSetup({
       async: false
 });
@@ -30,17 +34,27 @@ var dir = $.ajax({
 
 var id = 0;
 var group = 1;
+var min_subfolders;
 const update = function() {
       var input = $("#input")[0].value;
       if (input == undefined || input == "") {
             input = dir;
       }
       input = input.split("\n").filter(Boolean);
+      min_subfolders = input[0];
+      for (var i = 0; i < input.length; i++) {
+            if (subfolders(input[i]) < subfolders(min_subfolders)) {
+                  min_subfolders = input[i];
+            }
+      }
+      input.push(directory(min_subfolders));
 
       for (var i = 0; i < input.length; i++) {
             var split = input[i].split("\\");
             var name = split[split.length - 1];
-            if (name.includes(".")) {
+            if (i == input.length - 1) {
+                  group = 3;
+            } else if (name.includes(".")) {
                   group = 1;
             } else {
                   group = 2;
