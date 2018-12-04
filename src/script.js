@@ -8,15 +8,22 @@ var data = {
       edges: edges
 };
 
+// Remove file name from file path and return just the directory that file (or folder) resides in
 const directory = function(input) {
+      // Create variable to store output
       var output = "";
+      // Split input into name of each directory and the file name
       input = input.split("\\");
+      // Loop through all folders in file path (but not the file name)
       for (var i = 0; i < input.length - 1; i++) {
+            // Add folder name to output
             output += input[i];
+            // Only add backslash if not on last directory of file path
             if (i < input.length - 2) {
                   output += "\\";
             }
       }
+      // return output. this line is pretty self-explanatory
       return output;
 }
 
