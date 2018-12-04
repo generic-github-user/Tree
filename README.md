@@ -43,3 +43,7 @@ Partly because I wanted the text box to look good and partly because normal CSS 
 https://jquery.com/
 
 Because it's jQuery.
+
+# Notes
+
+ - If you want to visualize GitHub repositories, see veniversum's wonderful [git-visualizer](https://github.com/veniversum/git-visualizer). It works quite similar to Tree, but with GitHub repositories instead of files and folders.
