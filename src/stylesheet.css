@@ -8,14 +8,26 @@ body {
       height: 100%;
       margin: 0;
       padding: 0;
-      color: #d3d3d3;
-      font: 12pt arial;
-      background-color: #ffffff;
+}
+
+#input-container {
+      margin-left: 1.5vw;
+      position: absolute;
+      width: 10vw;
+      z-index: 1;
+      transition: all 1s ease;
+}
+
+#input-container:hover {
+      width: calc(100vw - (1.5vw * 2));
+      transition: all 1s ease;
 }
 
 #network {
-      width: 100%;
+      position: absolute;
+      width: 100vw;
       height: 100vh;
       margin: 0;
       padding: 0;
+      z-index: 0;
 }

@@ -7,20 +7,24 @@
 <head>
       <title>Tree</title>
 
-      <script type="text/javascript" src="./vis/vis.min.js"></script>
       <link href="./vis/vis.min.css" rel="stylesheet" type="text/css" />
-      <link href="./stylesheet.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" href="./mdl/icon.css" />
-      <link rel="stylesheet" href="./mdl/material.min.js" />
+      <link rel="stylesheet" href="./mdl/material.min.css" />
+      <link href="./stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-      <textarea id="input"></textarea>
+      <div class="mdl-textfield mdl-js-textfield" id="input-container">
+            <textarea class="mdl-textfield__input" type="text" rows="5" id="input" spellcheck="false"></textarea>
+            <label class="mdl-textfield__label" for="input"></label>
+      </div>
+
       <div id="network"></div>
 
       <script type="text/javascript" src="./jquery-3.3.1.min.js"></script>
-      <script type="text/javascript" src="./script.js"></script>
+      <script type="text/javascript" src="./vis/vis.min.js"></script>
       <script defer src="./mdl/material.min.js"></script>
+      <script type="text/javascript" src="./script.js"></script>
 </body>
 
 </html>
