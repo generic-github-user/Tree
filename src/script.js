@@ -1,13 +1,3 @@
-// Create datasets for nodes and edges
-var nodes = new vis.DataSet();
-var edges = new vis.DataSet();
-
-// Store node and edges in one object
-var data = {
-      nodes: nodes,
-      edges: edges
-};
-
 // Remove file name from file path and return just the directory that file (or folder) resides in
 const directory = function(input) {
       // Create variable to store output
@@ -38,14 +28,45 @@ var dir = $.ajax({
       async: false
 }).responseText;
 
-// ID of current node
-var id = 0;
+// Get div where network will be displayed
+var container = $("#network")[0];
+
+// Define options for network visualization
+var options = {
+      nodes: {
+            shape: 'dot',
+            size: 30,
+            font: {
+                  size: 16
+            },
+            borderWidth: 2,
+            shadow: true
+      },
+      edges: {
+            width: 2,
+            shadow: true
+      }
+};
+
 // Node group (color)
 var group;
 // Minimum number of nested directories in all file paths
 var min_subfolders;
 // Generate network visualization based on input data
 const update = function() {
+      // ID of current node
+      var id = 0;
+
+      // Create datasets for nodes and edges
+      nodes = new vis.DataSet();
+      edges = new vis.DataSet();
+
+      // Store node and edges in one object
+      data = {
+            nodes: nodes,
+            edges: edges
+      };
+
       // Get input text from textarea
       var input = $("#input")[0].value;
       // If no input is provided, use default
@@ -102,7 +123,6 @@ const update = function() {
 
             id++;
       }
-
       // Add connections/edges to network
       for (var i = 0; i < input.length; i++) {
             // Loop through all existing nodes
@@ -123,30 +143,12 @@ const update = function() {
                   }
             }
       }
+
+      // Display network
+      network = new vis.Network(container, data, options);
 }
 
 // Update network when program is started
 update();
 
-// Get div where network will be displayed
-var container = $("#network")[0];
-
-// Define options for network visualization
-var options = {
-      nodes: {
-            shape: 'dot',
-            size: 30,
-            font: {
-                  size: 16
-            },
-            borderWidth: 2,
-            shadow: true
-      },
-      edges: {
-            width: 2,
-            shadow: true
-      }
-};
-
-// Display network
-network = new vis.Network(container, data, options);
+$("#load-button").click(update);
