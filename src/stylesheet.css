@@ -23,6 +23,12 @@ body {
       transition: all 1s ease;
 }
 
+/* #input-tooltip {
+      position: absolute !important;
+      top: 100px;
+      left: 1.5vw;
+} */
+
 #network {
       position: absolute;
       width: 100vw;
