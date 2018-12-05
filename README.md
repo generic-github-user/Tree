@@ -46,4 +46,4 @@ Because it's jQuery.
 
 # Notes
 
- - If you want to visualize GitHub repositories, see veniversum's wonderful [git-visualizer](https://github.com/veniversum/git-visualizer). It works quite similar to Tree, but with GitHub repositories instead of files and folders.
+ - If you want to visualize GitHub repositories, see [veniversum](https://github.com/veniversum)'s wonderful [git-visualizer](https://github.com/veniversum/git-visualizer). It works quite similar to Tree, but with GitHub repositories instead of files and folders. Here's a visualization of this repository: https://veniversum.me/git-visualizer/?owner=generic-github-user&repo=Tree
