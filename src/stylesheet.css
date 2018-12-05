@@ -23,11 +23,6 @@ body {
       transition: all 1s ease;
 }
 
-#settings:hover {
-      width: 20vw;
-      transition: all 1s ease;
-}
-
 /* #input-tooltip {
       position: absolute !important;
       top: 100px;
@@ -36,10 +31,17 @@ body {
 
 #settings {
       position: absolute;
+      opacity: 0.8;
       width: 10vw;
       left: 1.5vw;
       top: 150px;
       z-index: 1;
+      transition: all 1s ease;
+}
+
+#settings:hover {
+      opacity: 1;
+      width: 20vw;
       transition: all 1s ease;
 }
 
