@@ -1,3 +1,16 @@
+var root = $("#root-switch")[0].checked;
+var input;
+
+// Create datasets for nodes and edges
+var nodes = new vis.DataSet();
+var edges = new vis.DataSet();
+
+// Store node and edges in one object
+var data = {
+      nodes: nodes,
+      edges: edges
+};
+
 // Remove file name from file path and return just the directory that file (or folder) resides in
 const directory = function(input) {
       // Create variable to store output
@@ -49,27 +62,51 @@ var options = {
 };
 
 // Node group (color)
-var group;
+const color_nodes = function() {
+      var group = 0;
+      for (var i = 0; i < Object.keys(data.nodes._data).length; i++) {
+            // Split file path into individual folders and files
+            var split = input[i].split("\\");
+            // Get filename from file path
+            var name = split[split.length - 1];
+
+            if (color == "File type") {
+                  // Root node should be one color . . .
+                  if (i == input.length - 1 && root) {
+                        group = 3;
+                  }
+                  // Directories (folders) should be another . . .
+                  else if (name.includes(".")) {
+                        group = 1;
+                  }
+                  // And files should be another
+                  else {
+                        group = 2;
+                  }
+            } else if (color == "File level") {
+                  group = subfolders(input[i]);
+            }
+
+            data.nodes.update({
+                  id: i,
+                  group: group
+            });
+      }
+}
+
 // Minimum number of nested directories in all file paths
 var min_subfolders;
 // Generate network visualization based on input data
 const update = function() {
       // ID of current node
       var id = 0;
-      var root = $("#root-switch")[0].checked;
 
       // Create datasets for nodes and edges
-      nodes = new vis.DataSet();
-      edges = new vis.DataSet();
-
-      // Store node and edges in one object
-      data = {
-            nodes: nodes,
-            edges: edges
-      };
+      data.nodes = new vis.DataSet();
+      data.edges = new vis.DataSet();
 
       // Get input text from textarea
-      var input = $("#input")[0].value;
+      input = $("#input")[0].value;
       // If no input is provided, use default
       if (input == undefined || input == "") {
             input = dir;
@@ -105,33 +142,17 @@ const update = function() {
             // Get filename from file path
             var name = split[split.length - 1];
 
-            if (color == "File type") {
-                  // Root node should be one color . . .
-                  if (i == input.length - 1 && root) {
-                        group = 3;
-                  }
-                  // Directories (folders) should be another . . .
-                  else if (name.includes(".")) {
-                        group = 1;
-                  }
-                  // And files should be another
-                  else {
-                        group = 2;
-                  }
-            } else if (color == "File level") {
-                  group = subfolders(input[i]);
-            }
-
             // Add node to network
-            nodes.add({
+            data.nodes.add({
                   id: id,
                   label: name,
-                  group: group,
                   path: input[i]
             });
 
             id++;
       }
+      color_nodes();
+
       // Add connections/edges to network
       for (var i = 0; i < input.length; i++) {
             // Loop through all existing nodes
@@ -139,7 +160,7 @@ const update = function() {
                   // Check if directory of current node matches the full path of any other nodes
                   if (directory(input[i]) == data.nodes._data[j].path) {
                         // If the node belongs to the current directory, add a connection between the two nodes
-                        edges.add({
+                        data.edges.add({
                               from: j,
                               to: i
                         });
@@ -160,7 +181,7 @@ const update = function() {
 var color = "File type";
 const uc = function() {
       $("#color-indicator").text(color);
-      update();
+      color_nodes();
 };
 $("#color-file-type").click(
       () => {
@@ -176,7 +197,10 @@ $("#color-file-level").click(
 );
 uc();
 
-$("#root-switch").click(update);
+$("#root-switch").click(() => {
+      root = $("#root-switch")[0].checked;
+      update();
+});
 
 // Update network when program is started
 update();
