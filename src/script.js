@@ -64,13 +64,15 @@ var options = {
 // Node group (color)
 const color_nodes = function() {
       var group = 0;
+      var file_types = [];
+
       for (var i = 0; i < Object.keys(data.nodes._data).length; i++) {
             // Split file path into individual folders and files
             var split = input[i].split("\\");
             // Get filename from file path
             var name = split[split.length - 1];
 
-            if (color == "File type") {
+            if (color == "Object type") {
                   // Root node should be one color . . .
                   if (i == input.length - 1 && root) {
                         group = 3;
@@ -85,6 +87,16 @@ const color_nodes = function() {
                   }
             } else if (color == "File level") {
                   group = subfolders(input[i]);
+            } else if (color == "File type") {
+                  if (name.includes(".")) {
+                        var file_type = name.split(".")[1];
+                        if (!file_types.includes(file_type)) {
+                              file_types.push(file_type);
+                        }
+                        group = file_types.indexOf(file_type);
+                  } else {
+                        group = -1;
+                  }
             }
 
             data.nodes.update({
@@ -178,20 +190,26 @@ const update = function() {
       network = new vis.Network(container, data, options);
 }
 
-var color = "File type";
+var color = "File level";
 const uc = function() {
       $("#color-indicator").text(color);
       color_nodes();
 };
-$("#color-file-type").click(
+$("#color-object-type").click(
       () => {
-            color = "File type";
+            color = "Object type";
             uc();
       }
 );
 $("#color-file-level").click(
       () => {
             color = "File level";
+            uc();
+      }
+);
+$("#color-file-type").click(
+      () => {
+            color = "File type";
             uc();
       }
 );
