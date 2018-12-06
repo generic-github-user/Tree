@@ -48,24 +48,6 @@ var options = {
       }
 };
 
-var color = "File type";
-const uc = function() {
-      $("#color-indicator").text(color)
-};
-$("#color-file-type").click(
-      () => {
-            color = "File type";
-            uc();
-      }
-);
-$("#color-file-level").click(
-      () => {
-            color = "File level";
-            uc();
-      }
-);
-uc();
-
 // Node group (color)
 var group;
 // Minimum number of nested directories in all file paths
@@ -172,6 +154,27 @@ const update = function() {
       // Display network
       network = new vis.Network(container, data, options);
 }
+
+var color = "File type";
+const uc = function() {
+      $("#color-indicator").text(color);
+      update();
+};
+$("#color-file-type").click(
+      () => {
+            color = "File type";
+            uc();
+      }
+);
+$("#color-file-level").click(
+      () => {
+            color = "File level";
+            uc();
+      }
+);
+uc();
+
+$("#root-switch").click(update);
 
 // Update network when program is started
 update();
