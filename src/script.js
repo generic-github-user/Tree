@@ -79,21 +79,23 @@ const update = function() {
       // Remove empty lines from input
       input = input.filter(Boolean);
 
-      if (root) {
-            // Find shortest file path
-            // Start with first file path
-            min_subfolders = input[0];
-            // Loop through all file paths
-            for (var i = 0; i < input.length; i++) {
-                  // Compare current shortest directory to current file path
-                  // If file path has fewer subfolders than min_subfolders, update min_subfolders
-                  if (subfolders(input[i]) < subfolders(min_subfolders)) {
-                        min_subfolders = input[i];
-                  }
+      // Find shortest file path
+      // Start with first file path
+      min_subfolders = input[0];
+      // Loop through all file paths
+      for (var i = 0; i < input.length; i++) {
+            // Compare current shortest directory to current file path
+            // If file path has fewer subfolders than min_subfolders, update min_subfolders
+            if (subfolders(input[i]) < subfolders(min_subfolders)) {
+                  min_subfolders = input[i];
             }
-            // Add root directory to list of file paths
-            input.push(directory(min_subfolders));
       }
+      var root_dir = directory(min_subfolders);
+      if (root) {
+            // Add root directory to list of file paths
+            input.push(root_dir);
+      }
+      $("#root-switch-tooltip").text(root_dir);
 
       // Add nodes to represent files and folders
       // Loop through all file paths
