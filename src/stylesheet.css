@@ -50,15 +50,23 @@ body {
       margin-bottom: 15px;
 }
 
+#node-color * {
+      display: inline-block;
+}
+
 #color-indicator {
       position: relative;
       top: 3px;
-      /* margin-right: 5px; */
-      float: left;
+      margin-left: 5px;
+      /* float: right; */
 }
 
 #color-dropdown {
-      float: right;
+      /* float: left; */
+}
+
+#node-color-header {
+      margin-bottom: 0;
 }
 
 #network {

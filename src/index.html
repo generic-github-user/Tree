@@ -27,15 +27,17 @@
             </button>
 
             <div id="node-color">
-                  <p id="color-indicator"></p>
+                  <p id="node-color-header">Color nodes by:</p>
+                  <br />
                   <button id="color-dropdown" class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--accent">
                         <i class="material-icons">arrow_drop_down</i>
                   </button>
+                  <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="color-dropdown">
+                        <li class="mdl-menu__item" id="color-file-type">File type</li>
+                        <li class="mdl-menu__item" id="color-file-level">File level</li>
+                  </ul>
+                  <p id="color-indicator"></p>
             </div>
-            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="color-dropdown">
-                  <li class="mdl-menu__item" id="color-file-type">File type</li>
-                  <li class="mdl-menu__item" id="color-file-level">File level</li>
-            </ul>
 
             <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="root-switch" id="root-switch-container">
                   <input type="checkbox" id="root-switch" class="mdl-switch__input" checked>
