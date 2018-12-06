@@ -48,6 +48,24 @@ var options = {
       }
 };
 
+var color = "File type";
+const uc = function() {
+      $("#color-indicator").text(color)
+};
+$("#color-file-type").click(
+      () => {
+            color = "File type";
+            uc();
+      }
+);
+$("#color-file-level").click(
+      () => {
+            color = "File level";
+            uc();
+      }
+);
+uc();
+
 // Node group (color)
 var group;
 // Minimum number of nested directories in all file paths
@@ -103,17 +121,21 @@ const update = function() {
             // Get filename from file path
             var name = split[split.length - 1];
 
-            // Root node should be one color . . .
-            if (i == input.length - 1 && root) {
-                  group = 3;
-            }
-            // Directories (folders) should be another . . .
-            else if (name.includes(".")) {
-                  group = 1;
-            }
-            // And files should be another
-            else {
-                  group = 2;
+            if (color == "File type") {
+                  // Root node should be one color . . .
+                  if (i == input.length - 1 && root) {
+                        group = 3;
+                  }
+                  // Directories (folders) should be another . . .
+                  else if (name.includes(".")) {
+                        group = 1;
+                  }
+                  // And files should be another
+                  else {
+                        group = 2;
+                  }
+            } else if (color == "File level") {
+                  group = subfolders(input[i]);
             }
 
             // Add node to network

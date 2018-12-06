@@ -50,6 +50,17 @@ body {
       margin-bottom: 15px;
 }
 
+#color-indicator {
+      position: relative;
+      top: 3px;
+      /* margin-right: 5px; */
+      float: left;
+}
+
+#color-dropdown {
+      float: right;
+}
+
 #network {
       position: absolute;
       width: 100vw;
