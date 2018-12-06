@@ -56,6 +56,7 @@ var min_subfolders;
 const update = function() {
       // ID of current node
       var id = 0;
+      var root = $("#root-switch")[0].checked;
 
       // Create datasets for nodes and edges
       nodes = new vis.DataSet();
@@ -78,19 +79,21 @@ const update = function() {
       // Remove empty lines from input
       input = input.filter(Boolean);
 
-      // Find shortest file path
-      // Start with first file path
-      min_subfolders = input[0];
-      // Loop through all file paths
-      for (var i = 0; i < input.length; i++) {
-            // Compare current shortest directory to current file path
-            // If file path has fewer subfolders than min_subfolders, update min_subfolders
-            if (subfolders(input[i]) < subfolders(min_subfolders)) {
-                  min_subfolders = input[i];
+      if (root) {
+            // Find shortest file path
+            // Start with first file path
+            min_subfolders = input[0];
+            // Loop through all file paths
+            for (var i = 0; i < input.length; i++) {
+                  // Compare current shortest directory to current file path
+                  // If file path has fewer subfolders than min_subfolders, update min_subfolders
+                  if (subfolders(input[i]) < subfolders(min_subfolders)) {
+                        min_subfolders = input[i];
+                  }
             }
+            // Add root directory to list of file paths
+            input.push(directory(min_subfolders));
       }
-      // Add root directory to list of file paths
-      input.push(directory(min_subfolders));
 
       // Add nodes to represent files and folders
       // Loop through all file paths
@@ -101,7 +104,7 @@ const update = function() {
             var name = split[split.length - 1];
 
             // Root node should be one color . . .
-            if (i == input.length - 1) {
+            if (i == input.length - 1 && root) {
                   group = 3;
             }
             // Directories (folders) should be another . . .
