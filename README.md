@@ -35,9 +35,9 @@ A number of settings are available to help customize the visualization.
 
 How to determine the color of each node represented.
 
-#### File Type
+#### Object Type
 
-By default, nodes are colored by what type of file they are. The root node (if it is shown) is one color, folders (sub-directories) are another color, and individual files are a different color.
+By default, nodes are colored by what type of digital object they are. The root node (if it is shown) is one color, folders (sub-directories) are another color, and individual files are a different color.
 
 ![Color nodes by object type](./3.PNG)
 
@@ -46,6 +46,12 @@ By default, nodes are colored by what type of file they are. The root node (if i
 Alternatively, nodes can be colored by what level within the file tree they are at. Level 1 (root) is one color, level 2 (subfolders of root) are another color, etc.
 
 ![Color nodes by file level](./6.PNG)
+
+#### File Type
+
+Nodes are colored based on their file extension; every different extension corresponds to a different node color. Folders are colored differently from all files.
+
+![Color nodes by file type](./7.PNG)
 
 ### Show/hide root node
 
