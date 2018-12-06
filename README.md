@@ -7,7 +7,7 @@ A simple visualizer for file directory tree structures, especially in Windows. F
 
 # Usage
 
-A demo of the program is available here: https://generic-github-user.github.io/Tree/src/. Before using the program, you will need to create a list of files in your chosen directory. Below are instructions to do so - they should remain firly relevant, as the command line has not changed much in the last 20 years. For more information, see [this question](https://stackoverflow.com/questions/15214486/command-to-list-all-files-in-a-folder-as-well-as-sub-folders-in-windows) on StackOverflow.
+A demo of the program is available here: https://generic-github-user.github.io/Tree/src/. Before using the program, you will need to create a list of files in your chosen directory. Below are instructions to do so - they should remain fairly relevant, as the command line has not changed much in the last 20 years. For more information, see [this question](https://stackoverflow.com/questions/15214486/command-to-list-all-files-in-a-folder-as-well-as-sub-folders-in-windows) on StackOverflow.
 
 ## Generating a list of files
 
@@ -21,7 +21,7 @@ You can close the command prompt now. Navigate to the directory in Windows Explo
 
 Use `CTRL + A` to select all of the text inside the document, then `CTRL + C` to copy it to your clipboard.
 
-Once you have the list of file paths, just paste it (`CTRL + V`) into the text box and press the "Update" button. The network visualization will automatically be generated. Enjoy!
+Once you have the list of file paths, just paste it (`CTRL + V`) into the text box and press the "Load" button. The network visualization will automatically be generated. Enjoy!
 
 ## Running it locally
 
