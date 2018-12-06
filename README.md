@@ -27,6 +27,36 @@ Once you have the list of file paths, just paste it (`CTRL + V`) into the text b
 
 If you so desire, you can also run a local clone of the program, although there is no good reason to. The demo version is perfectly good. One quick note: to include the default file maps, you will need to run the program on a local server so that an AJAX call can be made to request the needed data from the text file. The [atom-live-server package](https://atom.io/packages/atom-live-server) for the [Atom](https://atom.io/) text editor works well for this purpose. If not run on a live server, an error will be thrown.
 
+## Settings
+
+A number of settings are available to help customize the visualization.
+
+### Node color
+
+How to determine the color of each node represented.
+
+#### File Type
+
+By default, nodes are colored by what type of file they are. The root node (if it is shown) is one color, folders (sub-directories) are another color, and individual files are a different color.
+
+![Color nodes by object type](./3.PNG)
+
+#### File Level
+
+Alternatively, nodes can be colored by what level within the file tree they are at. Level 1 (root) is one color, level 2 (subfolders of root) are another color, etc.
+
+![Color nodes by file level](./6.PNG)
+
+### Show/hide root node
+
+By default, the file path data created by Windows does not include the root directory (the directory that was mapped). If the root node switch is enabled, Tree will automatically generate the root directory node.
+
+![Show root node enabled](./3.PNG)
+
+If it is not enabled, each sub-directory of the root directory will be displayed as the center of a separate network.
+
+![Show root node disabled](./2.PNG)
+
 # Tools
 
 ## vis.js
